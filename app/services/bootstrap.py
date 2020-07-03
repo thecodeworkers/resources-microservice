@@ -1,4 +1,5 @@
 from concurrent import futures
+from ..constants import MAX_WORKERS
 import grpc
 
-server = grpc.server(futures.ThreadPoolExecutor(max_workers=5))
+grpc_server = grpc.server(futures.ThreadPoolExecutor(max_workers=MAX_WORKERS))

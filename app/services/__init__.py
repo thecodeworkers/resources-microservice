@@ -1,2 +1,2 @@
-from .currency import currency_service
-from .bootstrap import server
+from .bootstrap import grpc_server
+from .servicers import start_all_servicers

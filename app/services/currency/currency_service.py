@@ -1,28 +1,17 @@
-from concurrent import futures
-import time
-import grpc
-import sys
-import os
 from ...protos import CurrencyServicer, CurrencyMultipleResponse, add_CurrencyServicer_to_server
-from ..bootstrap import server
+from ..bootstrap import grpc_server
+from ...models import Currency
+from ...utils import parserAllObject
 
 class CurrencyService(CurrencyServicer):
     def getAll(self, request, context):
-        response = CurrencyMultipleResponse(currency=[
-            {
-                'name': 'Bitcoin',
-                'color': '#FFF',
-                'type': 'CRYPTO',
-                'symbol': 'BTC',
-                'price': 9100,
-                'active': True
-            }
-        ])
+        currencies = parserAllObject(Currency)
+        response = CurrencyMultipleResponse(currency=currencies)
 
         return response
 
     def save(self, request, context):
         print('save')
 
-if(__name__ == 'app.services.currency.currency_service'):
-    add_CurrencyServicer_to_server(CurrencyService(), server)
+def start_currency_service():
+    add_CurrencyServicer_to_server(CurrencyService(), grpc_server)

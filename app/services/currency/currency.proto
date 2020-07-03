@@ -3,16 +3,17 @@ syntax = "proto3";
 message Empty {}
 
 message CurrencyObject {
-  string name = 1;
-  string color = 2;
-  bool active = 3;
+  string _id = 1;
+  string name = 2;
+  string color = 3;
+  bool active = 4;
   enum Type {
     FIAT = 0;
     CRYPTO = 1;
   }
-  Type type = 4;
-  string symbol = 5;
-  double price = 6;
+  Type type = 5;
+  string symbol = 6;
+  double price = 7;
 }
 
 message CurrencyResponse {
