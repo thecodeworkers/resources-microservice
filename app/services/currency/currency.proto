@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+message Empty {}
+
+message CurrencyObject {
+  string name = 1;
+  string color = 2;
+  bool active = 3;
+  enum Type {
+    FIAT = 0;
+    CRYPTO = 1;
+  }
+  Type type = 4;
+  string symbol = 5;
+  double price = 6;
+}
+
+message CurrencyResponse {
+  CurrencyObject currency = 1;
+}
+
+message CurrencyMultipleResponse {
+  repeated CurrencyObject currency = 1;
+}
+
+service Currency {
+  rpc getAll (Empty) returns (CurrencyMultipleResponse);
+  rpc save (CurrencyObject) returns (CurrencyResponse);
+}

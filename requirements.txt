@@ -1,4 +1,8 @@
 grpcio==1.30.0
 grpcio-tools==1.30.0
+mongoengine==0.20.0
+pathtools==0.1.2
 protobuf==3.12.2
+pymongo==3.10.1
+python-dotenv==0.13.0
 six==1.15.0
