@@ -19,9 +19,24 @@ class CurrencyStub(object):
                 request_serializer=app_dot_services_dot_currency_dot_currency__pb2.Empty.SerializeToString,
                 response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.FromString,
                 )
+        self.get = channel.unary_unary(
+                '/Currency/get',
+                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.SerializeToString,
+                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+                )
         self.save = channel.unary_unary(
                 '/Currency/save',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyObject.SerializeToString,
+                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyNotIdRequest.SerializeToString,
+                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+                )
+        self.update = channel.unary_unary(
+                '/Currency/update',
+                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyRequest.SerializeToString,
+                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+                )
+        self.delete = channel.unary_unary(
+                '/Currency/delete',
+                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.SerializeToString,
                 response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
                 )
 
@@ -35,7 +50,25 @@ class CurrencyServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def get(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def save(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def update(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def delete(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -49,9 +82,24 @@ def add_CurrencyServicer_to_server(servicer, server):
                     request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.Empty.FromString,
                     response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.SerializeToString,
             ),
+            'get': grpc.unary_unary_rpc_method_handler(
+                    servicer.get,
+                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.FromString,
+                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.SerializeToString,
+            ),
             'save': grpc.unary_unary_rpc_method_handler(
                     servicer.save,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyObject.FromString,
+                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyNotIdRequest.FromString,
+                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.SerializeToString,
+            ),
+            'update': grpc.unary_unary_rpc_method_handler(
+                    servicer.update,
+                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyRequest.FromString,
+                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.SerializeToString,
+            ),
+            'delete': grpc.unary_unary_rpc_method_handler(
+                    servicer.delete,
+                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.FromString,
                     response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.SerializeToString,
             ),
     }
@@ -81,6 +129,22 @@ class Currency(object):
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
+    def get(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Currency/get',
+            app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.SerializeToString,
+            app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
     def save(request,
             target,
             options=(),
@@ -91,7 +155,39 @@ class Currency(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Currency/save',
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyObject.SerializeToString,
+            app_dot_services_dot_currency_dot_currency__pb2.CurrencyNotIdRequest.SerializeToString,
+            app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def update(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Currency/update',
+            app_dot_services_dot_currency_dot_currency__pb2.CurrencyRequest.SerializeToString,
+            app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def delete(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Currency/delete',
+            app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.SerializeToString,
             app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

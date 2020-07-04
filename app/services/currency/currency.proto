@@ -2,8 +2,25 @@ syntax = "proto3";
 
 message Empty {}
 
-message CurrencyObject {
-  string _id = 1;
+message CurrencyIdRequest {
+  string id = 1;
+}
+
+message CurrencyNotIdRequest {
+  string name = 1;
+  string color = 2;
+  bool active = 3;
+  enum Type {
+    FIAT = 0;
+    CRYPTO = 1;
+  }
+  Type type = 4;
+  string symbol = 5;
+  double price = 6;
+}
+
+message CurrencyRequest {
+  string id = 1;
   string name = 2;
   string color = 3;
   bool active = 4;
@@ -17,14 +34,17 @@ message CurrencyObject {
 }
 
 message CurrencyResponse {
-  CurrencyObject currency = 1;
+  CurrencyRequest currency = 1;
 }
 
 message CurrencyMultipleResponse {
-  repeated CurrencyObject currency = 1;
+  repeated CurrencyRequest currency = 1;
 }
 
 service Currency {
   rpc getAll (Empty) returns (CurrencyMultipleResponse);
-  rpc save (CurrencyObject) returns (CurrencyResponse);
+  rpc get (CurrencyIdRequest) returns (CurrencyResponse);
+  rpc save (CurrencyNotIdRequest) returns (CurrencyResponse);
+  rpc update (CurrencyRequest) returns (CurrencyResponse);
+  rpc delete (CurrencyIdRequest) returns (CurrencyResponse);
 }
