@@ -6,7 +6,7 @@ import os
 
 class Server():
     def __init__(self):
-        self.__connection = None
+        self.connection = None
         self.__secure_server = SECURE_SERVER
 
     def start_server(self):
@@ -51,4 +51,4 @@ class Server():
                 time.sleep(1)
         except KeyboardInterrupt:
             grpc_server.stop(0)
-            self.__connection.close_connection()
+            self.connection.close_connection()
