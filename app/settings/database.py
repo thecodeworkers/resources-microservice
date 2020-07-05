@@ -2,8 +2,11 @@ from mongoengine import connect, disconnect
 from ..constants import DATABASE_NAME
 
 class Database():
+    def __init__(self):
+        self.__database_name = DATABASE_NAME
+
     def start_connection(self):
-        connect(DATABASE_NAME)
+        connect(self.__database_name)
 
     def close_connection(self):
-        disconnect(DATABASE_NAME)
+        disconnect(self.__database_name)

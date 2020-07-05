@@ -6,7 +6,8 @@ import os
 
 class Server():
     def __init__(self):
-        self.connection = None
+        self.__connection = None
+        self.__secure_server = SECURE_SERVER
 
     def start_server(self):
         start_all_servicers()
@@ -30,9 +31,9 @@ class Server():
     def __set_correct_server(self):
         try:
             grpc_server.add_insecure_port('[::]:50051')
-            if SECURE_SERVER == 'False': print("The server was unsecure")
+            if self.__secure_server == 'False': print("The server was unsecure")
 
-            if SECURE_SERVER == 'True':
+            if self.__secure_server == 'True':
                 credentials = self.__set_private_keys()
                 grpc_server.add_secure_port('[::]:50051', credentials)
                 print("The server was secure")
@@ -50,4 +51,4 @@ class Server():
                 time.sleep(1)
         except KeyboardInterrupt:
             grpc_server.stop(0)
-            self.connection.close_connection()
+            self.__connection.close_connection()
