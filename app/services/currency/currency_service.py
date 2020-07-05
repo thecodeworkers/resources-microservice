@@ -1,49 +1,66 @@
-from ...protos import CurrencyServicer, CurrencyMultipleResponse, CurrencyResponse, Empty, add_CurrencyServicer_to_server
-from ..bootstrap import grpc_server
-from ...models import Currency, CURRENCY_TYPE
-from ...utils import parser_all_object, parser_one_object
 from google.protobuf.json_format import MessageToDict
+from mongoengine.queryset import NotUniqueError
+from ..bootstrap import grpc_server
+from ...protos import CurrencyServicer, CurrencyMultipleResponse, CurrencyResponse, Empty, add_CurrencyServicer_to_server
+from ...models import Currency
+from ...utils import parser_all_object, parser_one_object, not_exist_code, exist_code
 
 class CurrencyService(CurrencyServicer):
-    def getAll(self, request, context):
+    def get_all(self, request, context):
         currencies = parser_all_object(Currency.objects.all())
         response = CurrencyMultipleResponse(currency=currencies)
 
         return response
 
     def get(self, request, context):
-        currency = Currency.objects.get(id=request.id)
-        currency = parser_one_object(currency)
-        response = CurrencyResponse(currency=currency)
+        try:
+            currency = Currency.objects.get(id=request.id)
+            currency = parser_one_object(currency)
+            response = CurrencyResponse(currency=currency)
 
-        return response
+            return response
+
+        except Currency.DoesNotExist as e:
+            not_exist_code(context, e)
 
     def save(self, request, context):
-        currency_object = MessageToDict(request)
-        currency = Currency(**currency_object).save()
-        currency = parser_one_object(currency)
-        response = CurrencyResponse(currency=currency)
+        try:
+            currency_object = MessageToDict(request)
+            currency = Currency(**currency_object).save()
+            currency = parser_one_object(currency)
+            response = CurrencyResponse(currency=currency)
 
-        return response
+            return response
+
+        except NotUniqueError as e:
+            exist_code(context, e)
 
     def update(self, request, context):
-        currency_object = MessageToDict(request)
-        currency = Currency.objects(id=currency_object['id'])
+        try:
+            currency_object = MessageToDict(request)
+            currency = Currency.objects(id=currency_object['id'])
 
-        if not currency: del currency_object['id']
+            if not currency: del currency_object['id']
 
-        currency = Currency(**currency_object).save()
-        currency = parser_one_object(currency)
-        response = CurrencyResponse(currency=currency)
-    
-        return response
+            currency = Currency(**currency_object).save()
+            currency = parser_one_object(currency)
+            response = CurrencyResponse(currency=currency)
+        
+            return response
 
+        except NotUniqueError as e:
+            exist_code(context, e)
+        
     def delete(self, request, context):
-        currency = Currency.objects.get(id=request.id)
-        currency = currency.delete()
-        response = Empty()
+        try:
+            currency = Currency.objects.get(id=request.id)
+            currency = currency.delete()
+            response = Empty()
 
-        return response
+            return response
 
+        except Currency.DoesNotExist as e:
+            not_exist_code(context, e)
+        
 def start_currency_service():
     add_CurrencyServicer_to_server(CurrencyService(), grpc_server)

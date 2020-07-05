@@ -42,7 +42,7 @@ message CurrencyMultipleResponse {
 }
 
 service Currency {
-  rpc getAll (Empty) returns (CurrencyMultipleResponse);
+  rpc get_all (Empty) returns (CurrencyMultipleResponse);
   rpc get (CurrencyIdRequest) returns (CurrencyResponse);
   rpc save (CurrencyNotIdRequest) returns (CurrencyResponse);
   rpc update (CurrencyRequest) returns (CurrencyResponse);

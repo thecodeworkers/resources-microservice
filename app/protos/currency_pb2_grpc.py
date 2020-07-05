@@ -14,8 +14,8 @@ class CurrencyStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.getAll = channel.unary_unary(
-                '/Currency/getAll',
+        self.get_all = channel.unary_unary(
+                '/Currency/get_all',
                 request_serializer=app_dot_services_dot_currency_dot_currency__pb2.Empty.SerializeToString,
                 response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.FromString,
                 )
@@ -44,7 +44,7 @@ class CurrencyStub(object):
 class CurrencyServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def getAll(self, request, context):
+    def get_all(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -77,8 +77,8 @@ class CurrencyServicer(object):
 
 def add_CurrencyServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'getAll': grpc.unary_unary_rpc_method_handler(
-                    servicer.getAll,
+            'get_all': grpc.unary_unary_rpc_method_handler(
+                    servicer.get_all,
                     request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.Empty.FromString,
                     response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.SerializeToString,
             ),
@@ -113,7 +113,7 @@ class Currency(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def getAll(request,
+    def get_all(request,
             target,
             options=(),
             channel_credentials=None,
@@ -122,7 +122,7 @@ class Currency(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Currency/getAll',
+        return grpc.experimental.unary_unary(request, target, '/Currency/get_all',
             app_dot_services_dot_currency_dot_currency__pb2.Empty.SerializeToString,
             app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.FromString,
             options, channel_credentials,
