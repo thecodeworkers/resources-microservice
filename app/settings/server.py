@@ -1,5 +1,5 @@
 from ..services import grpc_server, start_all_servicers
-from ..constants import SECURE_SERVER
+from ..constants import SECURE_SERVER, HOST
 import time
 import sys
 import os
@@ -30,12 +30,12 @@ class Server():
 
     def __set_correct_server(self):
         try:
-            grpc_server.add_insecure_port('[::]:50051')
+            grpc_server.add_insecure_port(HOST)
             if self.__secure_server == 'False': print("The server was unsecure")
 
             if self.__secure_server == 'True':
                 credentials = self.__set_private_keys()
-                grpc_server.add_secure_port('[::]:50051', credentials)
+                grpc_server.add_secure_port(HOST, credentials)
                 print("The server was secure")
 
             grpc_server.start()

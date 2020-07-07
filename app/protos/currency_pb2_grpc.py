@@ -14,6 +14,11 @@ class CurrencyStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.table = channel.unary_unary(
+                '/Currency/table',
+                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableRequest.SerializeToString,
+                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableResponse.FromString,
+                )
         self.get_all = channel.unary_unary(
                 '/Currency/get_all',
                 request_serializer=app_dot_services_dot_currency_dot_currency__pb2.Empty.SerializeToString,
@@ -43,6 +48,12 @@ class CurrencyStub(object):
 
 class CurrencyServicer(object):
     """Missing associated documentation comment in .proto file."""
+
+    def table(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
     def get_all(self, request, context):
         """Missing associated documentation comment in .proto file."""
@@ -77,6 +88,11 @@ class CurrencyServicer(object):
 
 def add_CurrencyServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'table': grpc.unary_unary_rpc_method_handler(
+                    servicer.table,
+                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableRequest.FromString,
+                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableResponse.SerializeToString,
+            ),
             'get_all': grpc.unary_unary_rpc_method_handler(
                     servicer.get_all,
                     request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.Empty.FromString,
@@ -111,6 +127,22 @@ def add_CurrencyServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class Currency(object):
     """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def table(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Currency/table',
+            app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableRequest.SerializeToString,
+            app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def get_all(request,

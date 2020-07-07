@@ -1,47 +1,63 @@
-syntax = "proto3";
+// syntax = "proto3";
+syntax = "proto2";
 
 message Empty {}
 
 message CurrencyIdRequest {
-  string id = 1;
+  required string id = 1;
 }
 
 message CurrencyNotIdRequest {
-  string name = 1;
-  string color = 2;
-  bool active = 3;
+  required string name = 1;
+  required string color = 2;
+  required bool active = 3 [default = true];
   enum Type {
     FIAT = 0;
     CRYPTO = 1;
   }
-  Type type = 4;
-  string symbol = 5;
-  double price = 6;
+  required Type type = 4;
+  required string symbol = 5;
+  required double price = 6;
 }
 
 message CurrencyRequest {
-  string id = 1;
-  string name = 2;
-  string color = 3;
-  bool active = 4;
+  required string id = 1;
+  required string name = 2;
+  required string color = 3;
+  required bool active = 4 [default = true];
   enum Type {
     FIAT = 0;
     CRYPTO = 1;
   }
-  Type type = 5;
-  string symbol = 6;
-  double price = 7;
+  required Type type = 5;
+  required string symbol = 6;
+  required double price = 7;
+}
+
+message CurrencyTableRequest {
+  required int32 page = 1;
+  optional int32 per_page = 2 [default = 15];
+  optional string search = 3;
 }
 
 message CurrencyResponse {
-  CurrencyRequest currency = 1;
+  required CurrencyRequest currency = 1;
 }
 
 message CurrencyMultipleResponse {
   repeated CurrencyRequest currency = 1;
 }
 
+message CurrencyTableResponse {
+  repeated CurrencyRequest items = 1;
+  required int32 page = 2;
+  required int32 per_page = 3;
+  required int32 total_items = 4;
+  required int32 num_pages = 5;
+}
+
 service Currency {
+  rpc table (CurrencyTableRequest) returns (CurrencyTableResponse);
   rpc get_all (Empty) returns (CurrencyMultipleResponse);
   rpc get (CurrencyIdRequest) returns (CurrencyResponse);
   rpc save (CurrencyNotIdRequest) returns (CurrencyResponse);
