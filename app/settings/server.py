@@ -30,8 +30,9 @@ class Server():
 
     def __set_correct_server(self):
         try:
-            grpc_server.add_insecure_port(HOST)
-            if self.__secure_server == 'False': print("The server was unsecure")
+            if self.__secure_server == 'False': 
+                grpc_server.add_insecure_port(HOST)
+                print("The server was unsecure")
 
             if self.__secure_server == 'True':
                 credentials = self.__set_private_keys()
@@ -39,8 +40,8 @@ class Server():
                 print("The server was secure")
 
             grpc_server.start()
-            print('Starting server. Listening on port 50051.')
             self.__loop_server()
+            print('Starting server. Listening on port 50051.')
 
         except Exception as error:
             print(error)
