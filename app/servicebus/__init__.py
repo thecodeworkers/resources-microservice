@@ -1,9 +1,12 @@
 from pika import BlockingConnection, ConnectionParameters, BasicProperties
 import uuid
 import json
+import threading
 
-class ServiceBus():
-    def __init__(self):
+class ServiceBus(threading.Thread):
+    def __init__(self, *args, **kwargs):
+        super(ServiceBus, self).__init__(*args, **kwargs)
+
         self.__connection = BlockingConnection(ConnectionParameters(host='localhost'))
         self.__channel = self.__connection.channel()
 
@@ -76,8 +79,11 @@ class ServiceBus():
         self.travel_event = receive
         self.__start_channel('send', self.__on_request)
 
-    def start_connection(self):
+    def run(self):
         self.__channel.start_consuming()
+
+    def stop(self):
+        self.__channel.stop_consuming()
 
     def close_connection(self):
         self.__connection.close()

@@ -1,0 +1,51 @@
+syntax = "proto2";
+
+message LanguageEmpty {}
+
+message LanguageIdRequest {
+  required string id = 1;
+}
+
+message LanguageNotIdRequest {
+  required string name = 1;
+  required string prefix = 2;
+  required bool active = 3 [default = true];
+}
+
+message LanguageRequest {
+  required string id = 1;
+  required string name = 2;
+  required string prefix = 3;
+  required bool active = 4 [default = true];
+}
+
+message LanguageTableRequest {
+  required int32 page = 1;
+  optional int32 per_page = 2 [default = 15];
+  optional string search = 3;
+}
+
+message LanguageResponse {
+  required LanguageRequest language = 1;
+}
+
+message LanguageMultipleResponse {
+  repeated LanguageRequest language = 1;
+}
+
+message LanguageTableResponse {
+  repeated LanguageRequest items = 1;
+  required int32 page = 2;
+  required int32 per_page = 3;
+  required int32 total_items = 4;
+  required int32 num_pages = 5;
+}
+
+service Language {
+  rpc table (LanguageTableRequest) returns (LanguageTableResponse);
+  rpc get_all (LanguageEmpty) returns (LanguageMultipleResponse);
+  rpc get (LanguageIdRequest) returns (LanguageResponse);
+  rpc save (LanguageNotIdRequest) returns (LanguageResponse);
+  rpc update (LanguageRequest) returns (LanguageResponse);
+  rpc delete (LanguageIdRequest) returns (LanguageResponse);
+}

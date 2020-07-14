@@ -1,4 +1,4 @@
-from ..services import grpc_server, start_all_servicers, service_bus
+from ..services import grpc_server, start_all_servicers, start_all_emiters
 from ..constants import SECURE_SERVER, HOST
 import time
 import sys
@@ -48,8 +48,16 @@ class Server():
 
     def __loop_server(self):
         try:
-            service_bus.start_connection()
+            # service_bus.start_connection()
+            events = start_all_emiters()
+            for event in events:
+                event.run()
+
         except KeyboardInterrupt:
             grpc_server.stop(0)
-            service_bus.close_connection()
+            # service_bus.close_connection()
+            for event in events:
+                event.stop()
+                event.close_connection()
+
             self.connection.close_connection()

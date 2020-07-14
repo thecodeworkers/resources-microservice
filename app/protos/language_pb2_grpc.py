@@ -2,10 +2,10 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from app.protos import currency_pb2 as app_dot_services_dot_currency_dot_currency__pb2
+from app.protos import language_pb2 as app_dot_services_dot_language_dot_language__pb2
 
 
-class CurrencyStub(object):
+class LanguageStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -15,38 +15,38 @@ class CurrencyStub(object):
             channel: A grpc.Channel.
         """
         self.table = channel.unary_unary(
-                '/Currency/table',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableRequest.SerializeToString,
-                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableResponse.FromString,
+                '/Language/table',
+                request_serializer=app_dot_services_dot_language_dot_language__pb2.LanguageTableRequest.SerializeToString,
+                response_deserializer=app_dot_services_dot_language_dot_language__pb2.LanguageTableResponse.FromString,
                 )
         self.get_all = channel.unary_unary(
-                '/Currency/get_all',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyEmpty.SerializeToString,
-                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.FromString,
+                '/Language/get_all',
+                request_serializer=app_dot_services_dot_language_dot_language__pb2.LanguageEmpty.SerializeToString,
+                response_deserializer=app_dot_services_dot_language_dot_language__pb2.LanguageMultipleResponse.FromString,
                 )
         self.get = channel.unary_unary(
-                '/Currency/get',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.SerializeToString,
-                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+                '/Language/get',
+                request_serializer=app_dot_services_dot_language_dot_language__pb2.LanguageIdRequest.SerializeToString,
+                response_deserializer=app_dot_services_dot_language_dot_language__pb2.LanguageResponse.FromString,
                 )
         self.save = channel.unary_unary(
-                '/Currency/save',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyNotIdRequest.SerializeToString,
-                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+                '/Language/save',
+                request_serializer=app_dot_services_dot_language_dot_language__pb2.LanguageNotIdRequest.SerializeToString,
+                response_deserializer=app_dot_services_dot_language_dot_language__pb2.LanguageResponse.FromString,
                 )
         self.update = channel.unary_unary(
-                '/Currency/update',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyRequest.SerializeToString,
-                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+                '/Language/update',
+                request_serializer=app_dot_services_dot_language_dot_language__pb2.LanguageRequest.SerializeToString,
+                response_deserializer=app_dot_services_dot_language_dot_language__pb2.LanguageResponse.FromString,
                 )
         self.delete = channel.unary_unary(
-                '/Currency/delete',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.SerializeToString,
-                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+                '/Language/delete',
+                request_serializer=app_dot_services_dot_language_dot_language__pb2.LanguageIdRequest.SerializeToString,
+                response_deserializer=app_dot_services_dot_language_dot_language__pb2.LanguageResponse.FromString,
                 )
 
 
-class CurrencyServicer(object):
+class LanguageServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def table(self, request, context):
@@ -86,46 +86,46 @@ class CurrencyServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_CurrencyServicer_to_server(servicer, server):
+def add_LanguageServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'table': grpc.unary_unary_rpc_method_handler(
                     servicer.table,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableRequest.FromString,
-                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableResponse.SerializeToString,
+                    request_deserializer=app_dot_services_dot_language_dot_language__pb2.LanguageTableRequest.FromString,
+                    response_serializer=app_dot_services_dot_language_dot_language__pb2.LanguageTableResponse.SerializeToString,
             ),
             'get_all': grpc.unary_unary_rpc_method_handler(
                     servicer.get_all,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyEmpty.FromString,
-                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.SerializeToString,
+                    request_deserializer=app_dot_services_dot_language_dot_language__pb2.LanguageEmpty.FromString,
+                    response_serializer=app_dot_services_dot_language_dot_language__pb2.LanguageMultipleResponse.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.FromString,
-                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.SerializeToString,
+                    request_deserializer=app_dot_services_dot_language_dot_language__pb2.LanguageIdRequest.FromString,
+                    response_serializer=app_dot_services_dot_language_dot_language__pb2.LanguageResponse.SerializeToString,
             ),
             'save': grpc.unary_unary_rpc_method_handler(
                     servicer.save,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyNotIdRequest.FromString,
-                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.SerializeToString,
+                    request_deserializer=app_dot_services_dot_language_dot_language__pb2.LanguageNotIdRequest.FromString,
+                    response_serializer=app_dot_services_dot_language_dot_language__pb2.LanguageResponse.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyRequest.FromString,
-                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.SerializeToString,
+                    request_deserializer=app_dot_services_dot_language_dot_language__pb2.LanguageRequest.FromString,
+                    response_serializer=app_dot_services_dot_language_dot_language__pb2.LanguageResponse.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.FromString,
-                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.SerializeToString,
+                    request_deserializer=app_dot_services_dot_language_dot_language__pb2.LanguageIdRequest.FromString,
+                    response_serializer=app_dot_services_dot_language_dot_language__pb2.LanguageResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'Currency', rpc_method_handlers)
+            'Language', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class Currency(object):
+class Language(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -138,9 +138,9 @@ class Currency(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Currency/table',
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableRequest.SerializeToString,
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/Language/table',
+            app_dot_services_dot_language_dot_language__pb2.LanguageTableRequest.SerializeToString,
+            app_dot_services_dot_language_dot_language__pb2.LanguageTableResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -154,9 +154,9 @@ class Currency(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Currency/get_all',
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyEmpty.SerializeToString,
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/Language/get_all',
+            app_dot_services_dot_language_dot_language__pb2.LanguageEmpty.SerializeToString,
+            app_dot_services_dot_language_dot_language__pb2.LanguageMultipleResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -170,9 +170,9 @@ class Currency(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Currency/get',
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.SerializeToString,
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/Language/get',
+            app_dot_services_dot_language_dot_language__pb2.LanguageIdRequest.SerializeToString,
+            app_dot_services_dot_language_dot_language__pb2.LanguageResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -186,9 +186,9 @@ class Currency(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Currency/save',
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyNotIdRequest.SerializeToString,
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/Language/save',
+            app_dot_services_dot_language_dot_language__pb2.LanguageNotIdRequest.SerializeToString,
+            app_dot_services_dot_language_dot_language__pb2.LanguageResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -202,9 +202,9 @@ class Currency(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Currency/update',
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyRequest.SerializeToString,
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/Language/update',
+            app_dot_services_dot_language_dot_language__pb2.LanguageRequest.SerializeToString,
+            app_dot_services_dot_language_dot_language__pb2.LanguageResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -218,8 +218,8 @@ class Currency(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Currency/delete',
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.SerializeToString,
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/Language/delete',
+            app_dot_services_dot_language_dot_language__pb2.LanguageIdRequest.SerializeToString,
+            app_dot_services_dot_language_dot_language__pb2.LanguageResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

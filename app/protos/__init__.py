@@ -1,2 +1,4 @@
 from .currency_pb2_grpc import CurrencyServicer, add_CurrencyServicer_to_server
 from .currency_pb2 import CurrencyMultipleResponse, CurrencyResponse, CurrencyTableResponse, Empty
+from .language_pb2_grpc import LanguageServicer, add_LanguageServicer_to_server
+from .language_pb2 import LanguageMultipleResponse, LanguageResponse, LanguageTableResponse, LanguageEmpty

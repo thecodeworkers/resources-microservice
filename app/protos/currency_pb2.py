@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto2',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n$app/services/currency/currency.proto\"\x07\n\x05\x45mpty\"\x1f\n\x11\x43urrencyIdRequest\x12\n\n\x02id\x18\x01 \x02(\t\"\xaa\x01\n\x14\x43urrencyNotIdRequest\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\r\n\x05\x63olor\x18\x02 \x02(\t\x12\x0e\n\x06\x61\x63tive\x18\x03 \x02(\x08\x12(\n\x04type\x18\x04 \x02(\x0e\x32\x1a.CurrencyNotIdRequest.Type\x12\x0e\n\x06symbol\x18\x05 \x02(\t\x12\r\n\x05price\x18\x06 \x02(\x01\"\x1c\n\x04Type\x12\x08\n\x04\x46IAT\x10\x00\x12\n\n\x06\x43RYPTO\x10\x01\"\xac\x01\n\x0f\x43urrencyRequest\x12\n\n\x02id\x18\x01 \x02(\t\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\r\n\x05\x63olor\x18\x03 \x02(\t\x12\x0e\n\x06\x61\x63tive\x18\x04 \x02(\x08\x12#\n\x04type\x18\x05 \x02(\x0e\x32\x15.CurrencyRequest.Type\x12\x0e\n\x06symbol\x18\x06 \x02(\t\x12\r\n\x05price\x18\x07 \x02(\x01\"\x1c\n\x04Type\x12\x08\n\x04\x46IAT\x10\x00\x12\n\n\x06\x43RYPTO\x10\x01\"J\n\x14\x43urrencyTableRequest\x12\x0c\n\x04page\x18\x01 \x02(\x05\x12\x14\n\x08per_page\x18\x02 \x01(\x05:\x02\x31\x35\x12\x0e\n\x06search\x18\x03 \x01(\t\"6\n\x10\x43urrencyResponse\x12\"\n\x08\x63urrency\x18\x01 \x02(\x0b\x32\x10.CurrencyRequest\">\n\x18\x43urrencyMultipleResponse\x12\"\n\x08\x63urrency\x18\x01 \x03(\x0b\x32\x10.CurrencyRequest\"\x80\x01\n\x15\x43urrencyTableResponse\x12\x1f\n\x05items\x18\x01 \x03(\x0b\x32\x10.CurrencyRequest\x12\x0c\n\x04page\x18\x02 \x02(\x05\x12\x10\n\x08per_page\x18\x03 \x02(\x05\x12\x13\n\x0btotal_items\x18\x04 \x02(\x05\x12\x11\n\tnum_pages\x18\x05 \x02(\x05\x32\xb0\x02\n\x08\x43urrency\x12\x36\n\x05table\x12\x15.CurrencyTableRequest\x1a\x16.CurrencyTableResponse\x12,\n\x07get_all\x12\x06.Empty\x1a\x19.CurrencyMultipleResponse\x12,\n\x03get\x12\x12.CurrencyIdRequest\x1a\x11.CurrencyResponse\x12\x30\n\x04save\x12\x15.CurrencyNotIdRequest\x1a\x11.CurrencyResponse\x12-\n\x06update\x12\x10.CurrencyRequest\x1a\x11.CurrencyResponse\x12/\n\x06\x64\x65lete\x12\x12.CurrencyIdRequest\x1a\x11.CurrencyResponse'
+  serialized_pb=b'\n$app/services/currency/currency.proto\"\x0f\n\rCurrencyEmpty\"\x1f\n\x11\x43urrencyIdRequest\x12\n\n\x02id\x18\x01 \x02(\t\"\xb0\x01\n\x14\x43urrencyNotIdRequest\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\r\n\x05\x63olor\x18\x02 \x02(\t\x12\x14\n\x06\x61\x63tive\x18\x03 \x02(\x08:\x04true\x12(\n\x04type\x18\x04 \x02(\x0e\x32\x1a.CurrencyNotIdRequest.Type\x12\x0e\n\x06symbol\x18\x05 \x02(\t\x12\r\n\x05price\x18\x06 \x02(\x01\"\x1c\n\x04Type\x12\x08\n\x04\x46IAT\x10\x00\x12\n\n\x06\x43RYPTO\x10\x01\"\xb2\x01\n\x0f\x43urrencyRequest\x12\n\n\x02id\x18\x01 \x02(\t\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\r\n\x05\x63olor\x18\x03 \x02(\t\x12\x14\n\x06\x61\x63tive\x18\x04 \x02(\x08:\x04true\x12#\n\x04type\x18\x05 \x02(\x0e\x32\x15.CurrencyRequest.Type\x12\x0e\n\x06symbol\x18\x06 \x02(\t\x12\r\n\x05price\x18\x07 \x02(\x01\"\x1c\n\x04Type\x12\x08\n\x04\x46IAT\x10\x00\x12\n\n\x06\x43RYPTO\x10\x01\"J\n\x14\x43urrencyTableRequest\x12\x0c\n\x04page\x18\x01 \x02(\x05\x12\x14\n\x08per_page\x18\x02 \x01(\x05:\x02\x31\x35\x12\x0e\n\x06search\x18\x03 \x01(\t\"6\n\x10\x43urrencyResponse\x12\"\n\x08\x63urrency\x18\x01 \x02(\x0b\x32\x10.CurrencyRequest\">\n\x18\x43urrencyMultipleResponse\x12\"\n\x08\x63urrency\x18\x01 \x03(\x0b\x32\x10.CurrencyRequest\"\x80\x01\n\x15\x43urrencyTableResponse\x12\x1f\n\x05items\x18\x01 \x03(\x0b\x32\x10.CurrencyRequest\x12\x0c\n\x04page\x18\x02 \x02(\x05\x12\x10\n\x08per_page\x18\x03 \x02(\x05\x12\x13\n\x0btotal_items\x18\x04 \x02(\x05\x12\x11\n\tnum_pages\x18\x05 \x02(\x05\x32\xb8\x02\n\x08\x43urrency\x12\x36\n\x05table\x12\x15.CurrencyTableRequest\x1a\x16.CurrencyTableResponse\x12\x34\n\x07get_all\x12\x0e.CurrencyEmpty\x1a\x19.CurrencyMultipleResponse\x12,\n\x03get\x12\x12.CurrencyIdRequest\x1a\x11.CurrencyResponse\x12\x30\n\x04save\x12\x15.CurrencyNotIdRequest\x1a\x11.CurrencyResponse\x12-\n\x06update\x12\x10.CurrencyRequest\x1a\x11.CurrencyResponse\x12/\n\x06\x64\x65lete\x12\x12.CurrencyIdRequest\x1a\x11.CurrencyResponse'
 )
 
 
@@ -44,8 +44,8 @@ _CURRENCYNOTIDREQUEST_TYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=225,
-  serialized_end=253,
+  serialized_start=239,
+  serialized_end=267,
 )
 _sym_db.RegisterEnumDescriptor(_CURRENCYNOTIDREQUEST_TYPE)
 
@@ -69,15 +69,15 @@ _CURRENCYREQUEST_TYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=225,
-  serialized_end=253,
+  serialized_start=239,
+  serialized_end=267,
 )
 _sym_db.RegisterEnumDescriptor(_CURRENCYREQUEST_TYPE)
 
 
-_EMPTY = _descriptor.Descriptor(
-  name='Empty',
-  full_name='Empty',
+_CURRENCYEMPTY = _descriptor.Descriptor(
+  name='CurrencyEmpty',
+  full_name='CurrencyEmpty',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
@@ -96,7 +96,7 @@ _EMPTY = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=40,
-  serialized_end=47,
+  serialized_end=55,
 )
 
 
@@ -127,8 +127,8 @@ _CURRENCYIDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=49,
-  serialized_end=80,
+  serialized_start=57,
+  serialized_end=88,
 )
 
 
@@ -157,7 +157,7 @@ _CURRENCYNOTIDREQUEST = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='active', full_name='CurrencyNotIdRequest.active', index=2,
       number=3, type=8, cpp_type=7, label=2,
-      has_default_value=False, default_value=False,
+      has_default_value=True, default_value=True,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -195,8 +195,8 @@ _CURRENCYNOTIDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=83,
-  serialized_end=253,
+  serialized_start=91,
+  serialized_end=267,
 )
 
 
@@ -232,7 +232,7 @@ _CURRENCYREQUEST = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='active', full_name='CurrencyRequest.active', index=3,
       number=4, type=8, cpp_type=7, label=2,
-      has_default_value=False, default_value=False,
+      has_default_value=True, default_value=True,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -270,8 +270,8 @@ _CURRENCYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=256,
-  serialized_end=428,
+  serialized_start=270,
+  serialized_end=448,
 )
 
 
@@ -316,8 +316,8 @@ _CURRENCYTABLEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=430,
-  serialized_end=504,
+  serialized_start=450,
+  serialized_end=524,
 )
 
 
@@ -348,8 +348,8 @@ _CURRENCYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=506,
-  serialized_end=560,
+  serialized_start=526,
+  serialized_end=580,
 )
 
 
@@ -380,8 +380,8 @@ _CURRENCYMULTIPLERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=562,
-  serialized_end=624,
+  serialized_start=582,
+  serialized_end=644,
 )
 
 
@@ -440,8 +440,8 @@ _CURRENCYTABLERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=627,
-  serialized_end=755,
+  serialized_start=647,
+  serialized_end=775,
 )
 
 _CURRENCYNOTIDREQUEST.fields_by_name['type'].enum_type = _CURRENCYNOTIDREQUEST_TYPE
@@ -451,7 +451,7 @@ _CURRENCYREQUEST_TYPE.containing_type = _CURRENCYREQUEST
 _CURRENCYRESPONSE.fields_by_name['currency'].message_type = _CURRENCYREQUEST
 _CURRENCYMULTIPLERESPONSE.fields_by_name['currency'].message_type = _CURRENCYREQUEST
 _CURRENCYTABLERESPONSE.fields_by_name['items'].message_type = _CURRENCYREQUEST
-DESCRIPTOR.message_types_by_name['Empty'] = _EMPTY
+DESCRIPTOR.message_types_by_name['CurrencyEmpty'] = _CURRENCYEMPTY
 DESCRIPTOR.message_types_by_name['CurrencyIdRequest'] = _CURRENCYIDREQUEST
 DESCRIPTOR.message_types_by_name['CurrencyNotIdRequest'] = _CURRENCYNOTIDREQUEST
 DESCRIPTOR.message_types_by_name['CurrencyRequest'] = _CURRENCYREQUEST
@@ -461,12 +461,12 @@ DESCRIPTOR.message_types_by_name['CurrencyMultipleResponse'] = _CURRENCYMULTIPLE
 DESCRIPTOR.message_types_by_name['CurrencyTableResponse'] = _CURRENCYTABLERESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-Empty = _reflection.GeneratedProtocolMessageType('Empty', (_message.Message,), {
-  'DESCRIPTOR' : _EMPTY,
+CurrencyEmpty = _reflection.GeneratedProtocolMessageType('CurrencyEmpty', (_message.Message,), {
+  'DESCRIPTOR' : _CURRENCYEMPTY,
   '__module__' : 'app.services.currency.currency_pb2'
-  # @@protoc_insertion_point(class_scope:Empty)
+  # @@protoc_insertion_point(class_scope:CurrencyEmpty)
   })
-_sym_db.RegisterMessage(Empty)
+_sym_db.RegisterMessage(CurrencyEmpty)
 
 CurrencyIdRequest = _reflection.GeneratedProtocolMessageType('CurrencyIdRequest', (_message.Message,), {
   'DESCRIPTOR' : _CURRENCYIDREQUEST,
@@ -526,8 +526,8 @@ _CURRENCY = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=758,
-  serialized_end=1062,
+  serialized_start=778,
+  serialized_end=1090,
   methods=[
   _descriptor.MethodDescriptor(
     name='table',
@@ -544,7 +544,7 @@ _CURRENCY = _descriptor.ServiceDescriptor(
     full_name='Currency.get_all',
     index=1,
     containing_service=None,
-    input_type=_EMPTY,
+    input_type=_CURRENCYEMPTY,
     output_type=_CURRENCYMULTIPLERESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,

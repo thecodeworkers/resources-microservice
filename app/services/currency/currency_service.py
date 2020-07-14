@@ -1,14 +1,11 @@
 from google.protobuf.json_format import MessageToDict
 from mongoengine.queryset import NotUniqueError
-from ..bootstrap import grpc_server, service_bus
 from ...protos import CurrencyServicer, CurrencyMultipleResponse, CurrencyResponse, CurrencyTableResponse, Empty, add_CurrencyServicer_to_server
 from ...utils import parser_all_object, parser_one_object, not_exist_code, exist_code, paginate
+from ..bootstrap import grpc_server
 from ...models import Currency
 
 class CurrencyService(CurrencyServicer):
-    def __init__(self):
-        self.__emit_currencies()
-
     def table(self, request, context):
         currency = Currency.objects
         response = paginate(currency, request.page)
@@ -17,7 +14,7 @@ class CurrencyService(CurrencyServicer):
         return response
 
     def get_all(self, request, context):
-        currencies = self.__get_all_currencies()
+        currencies = parser_all_object(Currency.objects.all())
         response = CurrencyMultipleResponse(currency=currencies)
 
         return response
@@ -72,11 +69,5 @@ class CurrencyService(CurrencyServicer):
         except Currency.DoesNotExist as e:
             not_exist_code(context, e)
 
-    def __emit_currencies(self):
-        service_bus.send('currencies', self.__get_all_currencies)
-
-    def __get_all_currencies(self):
-        return parser_all_object(Currency.objects.all())
-        
 def start_currency_service():
     add_CurrencyServicer_to_server(CurrencyService(), grpc_server)
