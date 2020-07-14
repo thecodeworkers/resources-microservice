@@ -1,6 +1,6 @@
 from google.protobuf.json_format import MessageToDict
 from mongoengine.queryset import NotUniqueError
-from ...protos import CurrencyServicer, CurrencyMultipleResponse, CurrencyResponse, CurrencyTableResponse, Empty, add_CurrencyServicer_to_server
+from ...protos import CurrencyServicer, CurrencyMultipleResponse, CurrencyResponse, CurrencyTableResponse, CurrencyEmpty, add_CurrencyServicer_to_server
 from ...utils import parser_all_object, parser_one_object, not_exist_code, exist_code, paginate
 from ..bootstrap import grpc_server
 from ...models import Currency
@@ -62,7 +62,7 @@ class CurrencyService(CurrencyServicer):
         try:
             currency = Currency.objects.get(id=request.id)
             currency = currency.delete()
-            response = Empty()
+            response = CurrencyEmpty()
 
             return response
 
