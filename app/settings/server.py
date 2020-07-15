@@ -47,10 +47,19 @@ class Server():
 
         except Exception as error:
             print(error)
+    
+    def __determinate_loop(self):
+        status = service_bus.status()
+
+        if status:
+            service_bus.start()
+        else:
+            while True:
+                time.sleep(1)
 
     def __loop_server(self):
         try:
-            service_bus.start()
+            self.__determinate_loop()
 
         except KeyboardInterrupt:
             grpc_server.stop(0)

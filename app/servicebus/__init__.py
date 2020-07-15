@@ -1,4 +1,5 @@
 from pika import BlockingConnection, ConnectionParameters, BasicProperties
+from ..utils import contains
 import uuid
 import json
 
@@ -7,6 +8,43 @@ class ServiceBus():
         self.__connection = BlockingConnection(ConnectionParameters(host='localhost'))
         self.__channel = self.__connection.channel()
         self.__queues = []
+
+    def add_queue(self, queue_name, emitter):
+        event_object = {
+            'queue_name': queue_name,
+            'emitter': emitter
+        }
+
+        self.__queues.append(event_object)
+
+    def receive(self, channel_name, send=''):
+        self.__channel_name = channel_name
+        self.__start_one_channel(self.__on_response)
+
+        self.response = None
+        self.corr_id = str(uuid.uuid4())
+
+        self.__publish_channel(self.__channel, self.__channel_name, self.corr_id, send, self.callback_queue)
+        
+        while self.response is None:
+            self.__connection.process_data_events()
+
+        return self.response
+
+    def send(self):
+        self.__start_multiple_channel()
+
+    def status(self):
+        return len(self.__channel.consumer_tags)
+
+    def start(self):
+        self.__channel.start_consuming()
+
+    def stop(self):
+        self.__channel.stop_consuming()
+
+    def close_connection(self):
+        self.__connection.close()
 
     def __start_one_channel(self, on_event):
         result = self.__queue_declaration('', True)
@@ -24,11 +62,8 @@ class ServiceBus():
             self.__consume_channel(callback_queue, self.__on_request)
 
     def __on_request(self, ch, method, props, body):
-        if method.routing_key == 'currencies':
-            request = self.__queues[0]['emitter']()
-
-        if method.routing_key == 'currency':
-            request = self.__queues[1]['emitter']()
+        request = contains(self.__queues, lambda queue: queue['queue_name'] == method.routing_key)
+        request = request['emitter']() if request != None else None
 
         self.__publish_channel(ch, props.reply_to, props.correlation_id, request)
         ch.basic_ack(delivery_tag=method.delivery_tag)
@@ -59,37 +94,3 @@ class ServiceBus():
             ),
             body=json.dumps(body)
         )
-
-    def add_queue(self, queue_name, emitter):
-        event_object = {
-            'queue_name': queue_name,
-            'emitter': emitter
-        }
-
-        self.__queues.append(event_object)
-
-    def receive(self, channel_name, send=''):
-        self.__channel_name = channel_name
-        self.__start_one_channel(self.__on_response)
-
-        self.response = None
-        self.corr_id = str(uuid.uuid4())
-
-        self.__publish_channel(self.__channel, self.__channel_name, self.corr_id, send, self.callback_queue)
-        
-        while self.response is None:
-            self.__connection.process_data_events()
-
-        return self.response
-
-    def send(self):
-        self.__start_multiple_channel()
-
-    def start(self):
-        self.__channel.start_consuming()
-
-    def stop(self):
-        self.__channel.stop_consuming()
-
-    def close_connection(self):
-        self.__connection.close()
