@@ -1,5 +1,6 @@
 from ..services import grpc_server, service_bus, start_all_servicers, start_all_emiters
 from ..constants import SECURE_SERVER, HOST
+import grpc
 import time
 import sys
 import os
@@ -17,15 +18,13 @@ class Server():
 
     def __set_private_keys(self):
         with open('keys/private.key', 'rb') as f:
-            print('Open Private Key')
             private_key = f.read()
 
         with open('keys/cert.pem', 'rb') as f:
-            print('Open Public Key')
             public_key = f.read()
 
         server_credentials = grpc.ssl_server_credentials(
-            ((private_key, public_key))
+            ((private_key, public_key),)
         )
 
         return server_credentials
