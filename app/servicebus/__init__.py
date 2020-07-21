@@ -1,11 +1,12 @@
 from pika import BlockingConnection, ConnectionParameters, BasicProperties
+from ..constants import SERVICEBUS_HOST
 from ..utils import contains
 import uuid
 import json
 
 class ServiceBus():
     def __init__(self):
-        self.__connection = BlockingConnection(ConnectionParameters(host='localhost'))
+        self.__connection = BlockingConnection(ConnectionParameters(host=SERVICEBUS_HOST))
         self.__channel = self.__connection.channel()
         self.__queues = []
 

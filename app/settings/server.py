@@ -41,7 +41,7 @@ class Server():
                 print("The server was secure")
 
             grpc_server.start()
-            print('Starting server. Listening on port 50051.')
+            print(f'Starting server. Listening on {HOST}')
             self.__loop_server()
 
         except Exception as error:
