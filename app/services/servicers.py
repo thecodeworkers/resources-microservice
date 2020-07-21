@@ -1,4 +1,4 @@
-from .currency import start_currency_service, start_currency_emit
+from .currency import start_currency_service
 from .language import start_language_service
 
 def start_all_servicers():
@@ -6,4 +6,4 @@ def start_all_servicers():
     start_language_service()
 
 def start_all_emiters():
-    start_currency_emit()
+    pass
