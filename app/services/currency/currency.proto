@@ -9,7 +9,7 @@ message CurrencyIdRequest {
 message CurrencyNotIdRequest {
   required string name = 1;
   required string color = 2;
-  required bool active = 3 [default = true];
+  optional bool active = 3 [default = true];
   enum Type {
     FIAT = 0;
     CRYPTO = 1;
@@ -23,7 +23,7 @@ message CurrencyRequest {
   required string id = 1;
   required string name = 2;
   required string color = 3;
-  required bool active = 4 [default = true];
+  optional bool active = 4 [default = true];
   enum Type {
     FIAT = 0;
     CRYPTO = 1;
