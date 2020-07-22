@@ -9,14 +9,14 @@ message LanguageIdRequest {
 message LanguageNotIdRequest {
   required string name = 1;
   required string prefix = 2;
-  required bool active = 3 [default = true];
+  optional bool active = 3 [default = true];
 }
 
 message LanguageRequest {
   required string id = 1;
   required string name = 2;
   required string prefix = 3;
-  required bool active = 4 [default = true];
+  optional bool active = 4 [default = true];
 }
 
 message LanguageTableRequest {
