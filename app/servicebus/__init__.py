@@ -5,7 +5,9 @@ import json
 
 class ServiceBus():
     def __init__(self):
-        self.__connection = BlockingConnection(ConnectionParameters(host='localhost'))
+        print("Rabbit here")
+        self.__connection = BlockingConnection(ConnectionParameters(host='rabbitmq'))
+        print(self.__connection)
         self.__channel = self.__connection.channel()
         self.__queues = []
 
