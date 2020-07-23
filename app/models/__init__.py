@@ -1,2 +1,2 @@
-from .currency import Currency, CURRENCY_TYPE
-from .language import Language
+from .currencies import Currencies, CURRENCY_TYPE
+from .languages import Languages

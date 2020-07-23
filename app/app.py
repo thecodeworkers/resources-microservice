@@ -1,5 +1,4 @@
 from .settings import Database, Server
-from .models import Currency
 from .utils import paginate
 
 class App():
