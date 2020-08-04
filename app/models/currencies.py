@@ -2,7 +2,7 @@ from mongoengine import Document, StringField, BooleanField, DecimalField
 
 CURRENCY_TYPE = ('FIAT', 'CRYPTO')
 
-class Currency(Document):
+class Currencies(Document):
     name = StringField(max_length=100, required=True)
     color = StringField(max_length=7, required=True)
     active = BooleanField(default=True)
