@@ -1,11 +1,11 @@
-#INSTALACION DEL PROYECTO
+# COMANDOS DEL PROYECTO
 
 1) python -m venv envname
 2) envname\Scripts\activate.bat -> Windows | source envname/bin/activate -> Linux
 3) pip install -r requirements.txt
 4) python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. name.proto
 
-#ROADMAP
+# ROADMAP
 
 1) Crear servicio: Al momento de crear un servicio se debe crear una carpeta en app/services donde se creen dos archivos un .proto donde se defina la interfaz de protocol buffer y un .py donde se escriba la clase que posee la logica de negocio.
 2) Al momento de crear el archivo .proto se debe tener en cuenta que los metodos grpc necesita un request para poder devolver un response valido. En el microservicio de recursos hay un ejemplo con todos los metodos a usar.
