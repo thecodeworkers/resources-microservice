@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto2',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n$app/services/currency/currency.proto\"\x0f\n\rCurrencyEmpty\"\x1f\n\x11\x43urrencyIdRequest\x12\n\n\x02id\x18\x01 \x02(\t\"\xb0\x01\n\x14\x43urrencyNotIdRequest\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\r\n\x05\x63olor\x18\x02 \x02(\t\x12\x14\n\x06\x61\x63tive\x18\x03 \x01(\x08:\x04true\x12(\n\x04type\x18\x04 \x02(\x0e\x32\x1a.CurrencyNotIdRequest.Type\x12\x0e\n\x06symbol\x18\x05 \x02(\t\x12\r\n\x05price\x18\x06 \x02(\x01\"\x1c\n\x04Type\x12\x08\n\x04\x46IAT\x10\x00\x12\n\n\x06\x43RYPTO\x10\x01\"\xb2\x01\n\x0f\x43urrencyRequest\x12\n\n\x02id\x18\x01 \x02(\t\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\r\n\x05\x63olor\x18\x03 \x02(\t\x12\x14\n\x06\x61\x63tive\x18\x04 \x01(\x08:\x04true\x12#\n\x04type\x18\x05 \x02(\x0e\x32\x15.CurrencyRequest.Type\x12\x0e\n\x06symbol\x18\x06 \x02(\t\x12\r\n\x05price\x18\x07 \x02(\x01\"\x1c\n\x04Type\x12\x08\n\x04\x46IAT\x10\x00\x12\n\n\x06\x43RYPTO\x10\x01\"J\n\x14\x43urrencyTableRequest\x12\x0c\n\x04page\x18\x01 \x02(\x05\x12\x14\n\x08per_page\x18\x02 \x01(\x05:\x02\x31\x35\x12\x0e\n\x06search\x18\x03 \x01(\t\"6\n\x10\x43urrencyResponse\x12\"\n\x08\x63urrency\x18\x01 \x02(\x0b\x32\x10.CurrencyRequest\">\n\x18\x43urrencyMultipleResponse\x12\"\n\x08\x63urrency\x18\x01 \x03(\x0b\x32\x10.CurrencyRequest\"\x80\x01\n\x15\x43urrencyTableResponse\x12\x1f\n\x05items\x18\x01 \x03(\x0b\x32\x10.CurrencyRequest\x12\x0c\n\x04page\x18\x02 \x02(\x05\x12\x10\n\x08per_page\x18\x03 \x02(\x05\x12\x13\n\x0btotal_items\x18\x04 \x02(\x05\x12\x11\n\tnum_pages\x18\x05 \x02(\x05\x32\xb8\x02\n\x08\x43urrency\x12\x36\n\x05table\x12\x15.CurrencyTableRequest\x1a\x16.CurrencyTableResponse\x12\x34\n\x07get_all\x12\x0e.CurrencyEmpty\x1a\x19.CurrencyMultipleResponse\x12,\n\x03get\x12\x12.CurrencyIdRequest\x1a\x11.CurrencyResponse\x12\x30\n\x04save\x12\x15.CurrencyNotIdRequest\x1a\x11.CurrencyResponse\x12-\n\x06update\x12\x10.CurrencyRequest\x1a\x11.CurrencyResponse\x12/\n\x06\x64\x65lete\x12\x12.CurrencyIdRequest\x1a\x11.CurrencyResponse'
+  serialized_pb=b'\n$app/services/currency/currency.proto\"\x0f\n\rCurrencyEmpty\"\x1f\n\x11\x43urrencyIdRequest\x12\n\n\x02id\x18\x01 \x02(\t\"\xc4\x01\n\x14\x43urrencyNotIdRequest\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\r\n\x05\x63olor\x18\x02 \x02(\t\x12\x14\n\x06\x61\x63tive\x18\x03 \x01(\x08:\x04true\x12(\n\x04type\x18\x04 \x02(\x0e\x32\x1a.CurrencyNotIdRequest.Type\x12\x0e\n\x06symbol\x18\x05 \x02(\t\x12\r\n\x05price\x18\x06 \x02(\x01\x12\x12\n\nauth_token\x18\x07 \x01(\t\"\x1c\n\x04Type\x12\x08\n\x04\x46IAT\x10\x00\x12\n\n\x06\x43RYPTO\x10\x01\"\xc6\x01\n\x0f\x43urrencyRequest\x12\n\n\x02id\x18\x01 \x02(\t\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\r\n\x05\x63olor\x18\x03 \x02(\t\x12\x14\n\x06\x61\x63tive\x18\x04 \x01(\x08:\x04true\x12#\n\x04type\x18\x05 \x02(\x0e\x32\x15.CurrencyRequest.Type\x12\x0e\n\x06symbol\x18\x06 \x02(\t\x12\r\n\x05price\x18\x07 \x02(\x01\x12\x12\n\nauth_token\x18\x08 \x01(\t\"\x1c\n\x04Type\x12\x08\n\x04\x46IAT\x10\x00\x12\n\n\x06\x43RYPTO\x10\x01\"^\n\x14\x43urrencyTableRequest\x12\x0c\n\x04page\x18\x01 \x02(\x05\x12\x14\n\x08per_page\x18\x02 \x01(\x05:\x02\x31\x35\x12\x0e\n\x06search\x18\x03 \x01(\t\x12\x12\n\nauth_token\x18\x04 \x01(\t\"6\n\x10\x43urrencyResponse\x12\"\n\x08\x63urrency\x18\x01 \x02(\x0b\x32\x10.CurrencyRequest\">\n\x18\x43urrencyMultipleResponse\x12\"\n\x08\x63urrency\x18\x01 \x03(\x0b\x32\x10.CurrencyRequest\"\x80\x01\n\x15\x43urrencyTableResponse\x12\x1f\n\x05items\x18\x01 \x03(\x0b\x32\x10.CurrencyRequest\x12\x0c\n\x04page\x18\x02 \x02(\x05\x12\x10\n\x08per_page\x18\x03 \x02(\x05\x12\x13\n\x0btotal_items\x18\x04 \x02(\x05\x12\x11\n\tnum_pages\x18\x05 \x02(\x05\x32\xb8\x02\n\x08\x43urrency\x12\x36\n\x05table\x12\x15.CurrencyTableRequest\x1a\x16.CurrencyTableResponse\x12\x34\n\x07get_all\x12\x0e.CurrencyEmpty\x1a\x19.CurrencyMultipleResponse\x12,\n\x03get\x12\x12.CurrencyIdRequest\x1a\x11.CurrencyResponse\x12\x30\n\x04save\x12\x15.CurrencyNotIdRequest\x1a\x11.CurrencyResponse\x12-\n\x06update\x12\x10.CurrencyRequest\x1a\x11.CurrencyResponse\x12/\n\x06\x64\x65lete\x12\x12.CurrencyIdRequest\x1a\x11.CurrencyResponse'
 )
 
 
@@ -44,8 +44,8 @@ _CURRENCYNOTIDREQUEST_TYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=239,
-  serialized_end=267,
+  serialized_start=259,
+  serialized_end=287,
 )
 _sym_db.RegisterEnumDescriptor(_CURRENCYNOTIDREQUEST_TYPE)
 
@@ -69,8 +69,8 @@ _CURRENCYREQUEST_TYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=239,
-  serialized_end=267,
+  serialized_start=259,
+  serialized_end=287,
 )
 _sym_db.RegisterEnumDescriptor(_CURRENCYREQUEST_TYPE)
 
@@ -182,6 +182,13 @@ _CURRENCYNOTIDREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='auth_token', full_name='CurrencyNotIdRequest.auth_token', index=6,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -196,7 +203,7 @@ _CURRENCYNOTIDREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=91,
-  serialized_end=267,
+  serialized_end=287,
 )
 
 
@@ -257,6 +264,13 @@ _CURRENCYREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='auth_token', full_name='CurrencyRequest.auth_token', index=7,
+      number=8, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -270,8 +284,8 @@ _CURRENCYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=270,
-  serialized_end=448,
+  serialized_start=290,
+  serialized_end=488,
 )
 
 
@@ -304,6 +318,13 @@ _CURRENCYTABLEREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='auth_token', full_name='CurrencyTableRequest.auth_token', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -316,8 +337,8 @@ _CURRENCYTABLEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=450,
-  serialized_end=524,
+  serialized_start=490,
+  serialized_end=584,
 )
 
 
@@ -348,8 +369,8 @@ _CURRENCYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=526,
-  serialized_end=580,
+  serialized_start=586,
+  serialized_end=640,
 )
 
 
@@ -380,8 +401,8 @@ _CURRENCYMULTIPLERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=582,
-  serialized_end=644,
+  serialized_start=642,
+  serialized_end=704,
 )
 
 
@@ -440,8 +461,8 @@ _CURRENCYTABLERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=647,
-  serialized_end=775,
+  serialized_start=707,
+  serialized_end=835,
 )
 
 _CURRENCYNOTIDREQUEST.fields_by_name['type'].enum_type = _CURRENCYNOTIDREQUEST_TYPE
@@ -526,8 +547,8 @@ _CURRENCY = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=778,
-  serialized_end=1090,
+  serialized_start=838,
+  serialized_end=1150,
   methods=[
   _descriptor.MethodDescriptor(
     name='table',
