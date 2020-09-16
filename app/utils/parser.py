@@ -2,7 +2,8 @@ from json import loads
 
 def parser_all_object(model):
     parser = __commonParser(model)
-    parser = map(__iterate_object, parser)
+    parser = [__iterate_object(parse) for parse in parser]
+    print("working dude")
     return list(parser)
 
 def parser_one_object(model):

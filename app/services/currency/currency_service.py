@@ -14,6 +14,7 @@ class CurrencyService(CurrencyServicer):
         return response
 
     def get_all(self, request, context):
+        print('here')
         currencies = parser_all_object(Currencies.objects.all())
         response = CurrencyMultipleResponse(currency=currencies)
 
