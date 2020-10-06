@@ -9,18 +9,19 @@ from ..bootstrap import grpc_server
 class CurrencyService(CurrencyServicer):
     def table(self, request, context):
 
-        metadata = dict(context.invocation_metadata())
-        is_auth(metadata['auth_token'], '01_currency_table')
-        
+        auth_token = parser_context(context, 'auth_token')
+        is_auth(auth_token, '01_currency_table')
+
         currency = Currencies.objects
         response = paginate(currency, request.page)
         response = CurrencyTableResponse(**response)
-        
+
         return response
 
     def get_all(self, request, context):
-        metadata = dict(context.invocation_metadata())
-        is_auth(metadata['auth_token'], '01_currency_get_all')
+        auth_token = parser_context(context, 'auth_token')
+        is_auth(auth_token, '01_currency_get_all')
+
         currencies = parser_all_object(Currencies.objects.all())
         response = CurrencyMultipleResponse(currency=currencies)
 
@@ -28,8 +29,9 @@ class CurrencyService(CurrencyServicer):
 
     def get(self, request, context):
         try:
-            metadata = dict(context.invocation_metadata())
-            is_auth(metadata['auth_token'], '01_currency_get')
+            auth_token = parser_context(context, 'auth_token')
+            is_auth(auth_token, '01_currency_get')
+
             currency = Currencies.objects.get(id=request.id)
             currency = parser_one_object(currency)
             response = CurrencyResponse(currency=currency)
@@ -41,8 +43,8 @@ class CurrencyService(CurrencyServicer):
 
     def save(self, request, context):
         try:
-            metadata = dict(context.invocation_metadata())
-            is_auth(metadata['auth_token'], '01_currency_save')
+            auth_token = parser_context(context, 'auth_token')
+            is_auth(auth_token, '01_currency_save')
 
             currency_object = MessageToDict(request)
             currency = Currencies(**currency_object).save()
@@ -56,8 +58,9 @@ class CurrencyService(CurrencyServicer):
 
     def update(self, request, context):
         try:
-            metadata = dict(context.invocation_metadata())
-            is_auth(metadata['auth_token'], '01_currency_update')
+            auth_token = parser_context(context, 'auth_token')
+            is_auth(auth_token, '01_currency_update')
+
             currency_object = MessageToDict(request)
             currency = Currencies.objects(id=currency_object['id'])
 
@@ -66,16 +69,17 @@ class CurrencyService(CurrencyServicer):
             currency = Currencies(**currency_object).save()
             currency = parser_one_object(currency)
             response = CurrencyResponse(currency=currency)
-        
+
             return response
 
         except NotUniqueError as e:
             exist_code(context, e)
-        
+
     def delete(self, request, context):
         try:
-            metadata = dict(context.invocation_metadata())
-            is_auth(metadata['auth_token'], '01_currency_delete')
+            auth_token = parser_context(context, 'auth_token')
+            is_auth(auth_token, '01_currency_delete')
+
             currency = Currencies.objects.get(id=request.id)
             currency = currency.delete()
             response = CurrencyEmpty()
