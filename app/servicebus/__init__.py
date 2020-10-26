@@ -30,7 +30,7 @@ class ServiceBus():
         self.corr_id = str(uuid.uuid4())
 
         self.__publish_channel(self.__channel, self.__channel_name, self.corr_id, send, self.callback_queue)
-        
+
         while self.response is None:
             self.__connection.process_data_events()
 
@@ -96,7 +96,7 @@ class ServiceBus():
             exchange='',
             routing_key=routing_key,
             properties=BasicProperties(
-                reply_to=reply_to, 
+                reply_to=reply_to,
                 correlation_id=correlation_id,
                 content_type='application/json'
             ),
