@@ -7,7 +7,7 @@ def language_seeder():
 
     datas = [
         {
-            'name':"Espanol",
+            'name':"Español",
             'prefix': "es",
             'active': True
         },
@@ -21,5 +21,5 @@ def language_seeder():
     for data in datas:
         exist_language = Languages.objects(prefix=data['prefix'])
         if not exist_language: Languages(**data).save()
-    
+
     database.close_connection()
