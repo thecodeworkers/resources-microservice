@@ -1,5 +1,7 @@
 from ..channel import service_bus_connection
 from ...models import Currencies
+from ...utils import parser_all_object
+import json
 
 class WebsocketEmitter():
     def __init__(self):
@@ -10,10 +12,9 @@ class WebsocketEmitter():
 
     def __data_callback(self, data):
         try:
-            cryptos = Currencies.objects(type='CRYPTO')
-
+            cryptos = parser_all_object(Currencies.objects(type="CRYPTO"))
             print(cryptos)
-            return True
+            return cryptos
         except Exception as error:
             return str(error)
 
