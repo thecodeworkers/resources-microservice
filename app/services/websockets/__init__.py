@@ -12,9 +12,12 @@ class WebsocketEmitter():
 
     def __data_callback(self, data):
         try:
-            cryptos = parser_all_object(Currencies.objects(type="CRYPTO"))
-            print(cryptos)
-            return cryptos
+            cryptos = Currencies.objects(pair=data['s'])
+            cryptos.update_one(set__price=data['c'])
+            print(parser_all_object(cryptos))
+
+            return parser_all_object(cryptos)
+
         except Exception as error:
             return str(error)
 
@@ -24,18 +27,3 @@ class WebsocketEmitter():
 def start_binance_emit():
     WebsocketEmitter()
     service_bus_connection.send()
-
-
-    # connection = pika.BlockingConnection(pika.ConnectionParameters(BUS_URL))
-    # channel = connection.channel()
-    # channel.queue_declare(queue='coins')
-
-    # def callback(ch, method, properties, body):
-    #     print(" [x] Received %r" % body)
-
-    # channel.basic_consume(queue='coins',
-    #                     auto_ack=True,
-    #                     on_message_callback=callback)
-
-    # print(' [*] Waiting for messages. To exit press CTRL+C')
-    # channel.start_consuming()
