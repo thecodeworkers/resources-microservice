@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from app.protos import currency_pb2 as app_dot_services_dot_currency_dot_currency__pb2
+from . import currency_pb2 as currency__pb2
 
 
 class CurrencyStub(object):
@@ -16,33 +16,33 @@ class CurrencyStub(object):
         """
         self.table = channel.unary_unary(
                 '/Currency/table',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableRequest.SerializeToString,
-                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableResponse.FromString,
+                request_serializer=currency__pb2.CurrencyTableRequest.SerializeToString,
+                response_deserializer=currency__pb2.CurrencyTableResponse.FromString,
                 )
         self.get_all = channel.unary_unary(
                 '/Currency/get_all',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyEmpty.SerializeToString,
-                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.FromString,
+                request_serializer=currency__pb2.CurrencyEmpty.SerializeToString,
+                response_deserializer=currency__pb2.CurrencyMultipleResponse.FromString,
                 )
         self.get = channel.unary_unary(
                 '/Currency/get',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.SerializeToString,
-                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+                request_serializer=currency__pb2.CurrencyIdRequest.SerializeToString,
+                response_deserializer=currency__pb2.CurrencyResponse.FromString,
                 )
         self.save = channel.unary_unary(
                 '/Currency/save',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyNotIdRequest.SerializeToString,
-                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+                request_serializer=currency__pb2.CurrencyNotIdRequest.SerializeToString,
+                response_deserializer=currency__pb2.CurrencyResponse.FromString,
                 )
         self.update = channel.unary_unary(
                 '/Currency/update',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyRequest.SerializeToString,
-                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+                request_serializer=currency__pb2.CurrencyRequest.SerializeToString,
+                response_deserializer=currency__pb2.CurrencyResponse.FromString,
                 )
         self.delete = channel.unary_unary(
                 '/Currency/delete',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.SerializeToString,
-                response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+                request_serializer=currency__pb2.CurrencyIdRequest.SerializeToString,
+                response_deserializer=currency__pb2.CurrencyResponse.FromString,
                 )
 
 
@@ -90,33 +90,33 @@ def add_CurrencyServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'table': grpc.unary_unary_rpc_method_handler(
                     servicer.table,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableRequest.FromString,
-                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableResponse.SerializeToString,
+                    request_deserializer=currency__pb2.CurrencyTableRequest.FromString,
+                    response_serializer=currency__pb2.CurrencyTableResponse.SerializeToString,
             ),
             'get_all': grpc.unary_unary_rpc_method_handler(
                     servicer.get_all,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyEmpty.FromString,
-                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.SerializeToString,
+                    request_deserializer=currency__pb2.CurrencyEmpty.FromString,
+                    response_serializer=currency__pb2.CurrencyMultipleResponse.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.FromString,
-                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.SerializeToString,
+                    request_deserializer=currency__pb2.CurrencyIdRequest.FromString,
+                    response_serializer=currency__pb2.CurrencyResponse.SerializeToString,
             ),
             'save': grpc.unary_unary_rpc_method_handler(
                     servicer.save,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyNotIdRequest.FromString,
-                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.SerializeToString,
+                    request_deserializer=currency__pb2.CurrencyNotIdRequest.FromString,
+                    response_serializer=currency__pb2.CurrencyResponse.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyRequest.FromString,
-                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.SerializeToString,
+                    request_deserializer=currency__pb2.CurrencyRequest.FromString,
+                    response_serializer=currency__pb2.CurrencyResponse.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.FromString,
-                    response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.SerializeToString,
+                    request_deserializer=currency__pb2.CurrencyIdRequest.FromString,
+                    response_serializer=currency__pb2.CurrencyResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -139,8 +139,8 @@ class Currency(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Currency/table',
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableRequest.SerializeToString,
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyTableResponse.FromString,
+            currency__pb2.CurrencyTableRequest.SerializeToString,
+            currency__pb2.CurrencyTableResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -155,8 +155,8 @@ class Currency(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Currency/get_all',
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyEmpty.SerializeToString,
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.FromString,
+            currency__pb2.CurrencyEmpty.SerializeToString,
+            currency__pb2.CurrencyMultipleResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -171,8 +171,8 @@ class Currency(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Currency/get',
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.SerializeToString,
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+            currency__pb2.CurrencyIdRequest.SerializeToString,
+            currency__pb2.CurrencyResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -187,8 +187,8 @@ class Currency(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Currency/save',
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyNotIdRequest.SerializeToString,
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+            currency__pb2.CurrencyNotIdRequest.SerializeToString,
+            currency__pb2.CurrencyResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -203,8 +203,8 @@ class Currency(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Currency/update',
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyRequest.SerializeToString,
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+            currency__pb2.CurrencyRequest.SerializeToString,
+            currency__pb2.CurrencyResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -219,7 +219,7 @@ class Currency(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Currency/delete',
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyIdRequest.SerializeToString,
-            app_dot_services_dot_currency_dot_currency__pb2.CurrencyResponse.FromString,
+            currency__pb2.CurrencyIdRequest.SerializeToString,
+            currency__pb2.CurrencyResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -16,3 +16,4 @@ MAX_WORKERS = int(os.getenv('MAX_WORKERS', 5))
 HOST = os.getenv('HOST', '[::]:50051')
 
 SERVICEBUS_HOST = os.getenv('SERVICEBUS_HOST', 'localhost')
+SERVICEBUS_TIMEOUT = int(os.getenv('SERVICEBUS_TIMEOUT', 2))

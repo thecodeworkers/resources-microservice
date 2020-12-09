@@ -6,15 +6,16 @@ message CurrencyIdRequest {
   required string id = 1;
 }
 
+enum Type {
+  FIAT = 0;
+  CRYPTO = 1;
+}
+
 message CurrencyNotIdRequest {
   required string name = 1;
   required string color = 2;
   repeated string gradients = 3;
   optional bool active = 4 [default = true];
-  enum Type {
-    FIAT = 0;
-    CRYPTO = 1;
-  }
   required Type type = 5;
   required string symbol = 6;
   required double price = 7;
@@ -26,10 +27,6 @@ message CurrencyRequest {
   required string color = 3;
   repeated string gradients = 4;
   optional bool active = 5 [default = true];
-  enum Type {
-    FIAT = 0;
-    CRYPTO = 1;
-  }
   required Type type = 6;
   required string symbol = 7;
   required double price = 8;
