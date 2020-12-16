@@ -4,6 +4,7 @@ from ...utils.validate_session import is_auth
 from ...models import Currencies
 from ...protos import *
 from ...utils import *
+from bson.objectid import ObjectId
 from ..bootstrap import grpc_server
 
 class CurrencyService(CurrencyServicer):
@@ -13,6 +14,19 @@ class CurrencyService(CurrencyServicer):
         is_auth(auth_token, '01_currency_table')
 
         currency = Currencies.objects
+
+        if request.search:
+            currency = Currencies.objects(__raw__={'$or': [
+                {'name': request.search},
+                {'color':  request.search},
+                {'gradients':  {'$all': [request.search]}},
+                {'type': request.search},
+                {'symbol': request.search},
+                {'price': float(request.search) if request.search.isdigit() else request.search},
+                {'_id': ObjectId(request.search) if ObjectId.is_valid(
+                    request.search) else request.search}
+            ]})
+
         response = paginate(currency, request.page)
         response = CurrencyTableResponse(**response)
 
