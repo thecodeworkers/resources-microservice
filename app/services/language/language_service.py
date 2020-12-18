@@ -4,6 +4,7 @@ from ...protos import LanguageServicer, LanguageMultipleResponse, LanguageRespon
 from ...utils import parser_all_object, parser_one_object, not_exist_code, exist_code, paginate, parser_context
 from ...utils.validate_session import is_auth
 from ..bootstrap import grpc_server
+from bson.objectid import ObjectId
 from ...models import Languages
 
 class LanguageService(LanguageServicer):
@@ -12,6 +13,15 @@ class LanguageService(LanguageServicer):
         is_auth(auth_token, '01_language_table')
 
         languages = Languages.objects
+
+        if request.search:
+            languages = Languages.objects(__raw__={'$or': [
+                {'name': request.search},
+                {'prefix':  request.search},
+                {'_id': ObjectId(request.search) if ObjectId.is_valid(
+                    request.search) else request.search}
+            ]})
+
         response = paginate(languages, request.page)
         response = LanguageTableResponse(**response)
 
