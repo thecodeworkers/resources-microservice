@@ -13,23 +13,46 @@ class CurrencyService(CurrencyServicer):
         auth_token = parser_context(context, 'auth_token')
         is_auth(auth_token, '01_currency_table')
 
-        currency = Currencies.objects
+        search = request.search
+        
+        pipeline = [
+            {
+                "$match": {
+                    "$or": [
+                        {"name": {"$regex": search, "$options": "i"}},
+                        {"color": {"$regex": search, "$options": "i"}},
+                        {"type": {"$regex": search, "$options": "i"}},
+                        {"symbol": {"$regex": search, "$options": "i"}},
+                        {"price": {"$regex": search, "$options": "i"}},
+                    ]
+                }
+            },
+            {
+                "$group": {
+                    "_id": "$_id",
+                    "id": {"$first": {"$toString": "$_id"}},
+                    "name": {"$first": "$name"},
+                    "color": {"$first": "$color"},
+                    "gradients": {"$first": "$gradients"},
+                    "active": {"$first": "$active"},
+                    "type": {"$first": "$type"},
+                    "symbol": {"$first": "$symbol"},
+                    "price": {"$first": "$price"},
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0
+                }
+            }
+        ]
 
-        if request.search:
-            currency = Currencies.objects(__raw__={'$or': [
-                {'name': request.search},
-                {'color':  request.search},
-                {'gradients':  {'$all': [request.search]}},
-                {'type': request.search},
-                {'symbol': request.search},
-                {'price': float(request.search) if request.search.isdigit() else request.search},
-                {'_id': ObjectId(request.search) if ObjectId.is_valid(
-                    request.search) else request.search}
-            ]})
+        pipeline = pipeline + pagination(request.page, request.per_page, {"name": 1})
 
-        response = paginate(currency, request.page)
-        response = CurrencyTableResponse(**response)
+        response = Currencies.objects().aggregate(pipeline)
 
+        response = CurrencyTableResponse(**default_paginate_schema(response, request.page, request.per_page))
+    
         return response
 
     def get_all(self, request, context):
