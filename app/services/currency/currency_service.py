@@ -28,16 +28,8 @@ class CurrencyService(CurrencyServicer):
                 }
             },
             {
-                "$group": {
-                    "_id": "$_id",
-                    "id": {"$first": {"$toString": "$_id"}},
-                    "name": {"$first": "$name"},
-                    "color": {"$first": "$color"},
-                    "gradients": {"$first": "$gradients"},
-                    "active": {"$first": "$active"},
-                    "type": {"$first": "$type"},
-                    "symbol": {"$first": "$symbol"},
-                    "price": {"$first": "$price"},
+                "$set": {
+                    "id": {"$toString": "$_id"}
                 }
             },
             {

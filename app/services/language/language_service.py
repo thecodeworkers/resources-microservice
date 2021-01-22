@@ -24,12 +24,8 @@ class LanguageService(LanguageServicer):
                 }
             },
             {
-                "$group": {
-                    "_id": "$_id",
-                    "id": {"$first": {"$toString": "$_id"}},
-                    "name": {"$first": "$name"},
-                    "prefix": {"$first": "$prefix"},
-                    "active": {"$first": "$active"},
+                "$set": {
+                    "id": {"$toString": "$_id"}
                 }
             },
             {
