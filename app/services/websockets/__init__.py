@@ -13,6 +13,8 @@ class WebsocketEmitter():
     def __data_callback(self, data):
         try:
             cryptos = Currencies.objects(pair=data['s'])
+            print(data['s'])
+            print(cryptos)
             cryptos.update_one(set__price=data['c'])
             print(parser_all_object(cryptos))
 
