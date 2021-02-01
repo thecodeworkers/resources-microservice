@@ -4,6 +4,7 @@ from ...utils.validate_session import is_auth
 from ...models import Currencies
 from ...protos import *
 from ...utils import *
+from bson.objectid import ObjectId
 from ..bootstrap import grpc_server
 
 class CurrencyService(CurrencyServicer):
@@ -12,10 +13,38 @@ class CurrencyService(CurrencyServicer):
         auth_token = parser_context(context, 'auth_token')
         is_auth(auth_token, '01_currency_table')
 
-        currency = Currencies.objects
-        response = paginate(currency, request.page)
-        response = CurrencyTableResponse(**response)
+        search = request.search
+        
+        pipeline = [
+            {
+                "$match": {
+                    "$or": [
+                        {"name": {"$regex": search, "$options": "i"}},
+                        {"color": {"$regex": search, "$options": "i"}},
+                        {"type": {"$regex": search, "$options": "i"}},
+                        {"symbol": {"$regex": search, "$options": "i"}},
+                        {"price": {"$regex": search, "$options": "i"}},
+                    ]
+                }
+            },
+            {
+                "$set": {
+                    "id": {"$toString": "$_id"}
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0
+                }
+            }
+        ]
 
+        pipeline = pipeline + pagination(request.page, request.per_page, {"name": 1})
+
+        response = Currencies.objects().aggregate(pipeline)
+
+        response = CurrencyTableResponse(**default_paginate_schema(response, request.page, request.per_page))
+    
         return response
 
     def get_all(self, request, context):

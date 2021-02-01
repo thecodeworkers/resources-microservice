@@ -1,9 +1,10 @@
 from google.protobuf.json_format import MessageToDict
 from mongoengine.queryset import NotUniqueError
 from ...protos import LanguageServicer, LanguageMultipleResponse, LanguageResponse, LanguageTableResponse, LanguageEmpty, add_LanguageServicer_to_server
-from ...utils import parser_all_object, parser_one_object, not_exist_code, exist_code, paginate, parser_context
+from ...utils import parser_all_object, parser_one_object, not_exist_code, exist_code, paginate, parser_context, pagination,default_paginate_schema
 from ...utils.validate_session import is_auth
 from ..bootstrap import grpc_server
+from bson.objectid import ObjectId
 from ...models import Languages
 
 class LanguageService(LanguageServicer):
@@ -11,9 +12,34 @@ class LanguageService(LanguageServicer):
         auth_token = parser_context(context, 'auth_token')
         is_auth(auth_token, '01_language_table')
 
-        languages = Languages.objects
-        response = paginate(languages, request.page)
-        response = LanguageTableResponse(**response)
+        search = request.search
+        
+        pipeline = [
+            {
+                "$match": {
+                    "$or": [
+                        {"name": {"$regex": search, "$options": "i"}},
+                        {"prefix": {"$regex": search, "$options": "i"}},
+                    ]
+                }
+            },
+            {
+                "$set": {
+                    "id": {"$toString": "$_id"}
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0
+                }
+            }
+        ]
+
+        pipeline = pipeline + pagination(request.page, request.per_page, {"name": 1})
+
+        response = Languages.objects().aggregate(pipeline)
+
+        response = LanguageTableResponse(**default_paginate_schema(response, request.page, request.per_page))
 
         return response
 
