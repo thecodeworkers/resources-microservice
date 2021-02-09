@@ -14,7 +14,6 @@ class WebsocketEmitter():
         try:
             cryptos = Currencies.objects(pair=data['s'])
             cryptos.update_one(set__price=data['c'])
-            print(parser_all_object(cryptos))
 
             return parser_all_object(cryptos)
 
