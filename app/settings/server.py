@@ -1,4 +1,4 @@
-from ..services import grpc_server, service_bus, start_all_servicers, start_all_emiters
+from ..services import grpc_server, service_bus, start_all_servicers, start_all_emitters
 from ..constants import SECURE_SERVER, HOST
 from .logger import logging
 import grpc
@@ -14,7 +14,7 @@ class Server():
 
     def start_server(self):
         start_all_servicers()
-        start_all_emiters()
+        start_all_emitters()
 
         self.__set_correct_server()
 
