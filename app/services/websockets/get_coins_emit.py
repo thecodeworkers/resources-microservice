@@ -12,7 +12,7 @@ class GetCoinsEmitter():
 
     def __data_callback(self, data):
         try:
-            cryptos = Currencies.objects.filter(type="CRYPTO").filter(symbol__ne="USDT")
+            cryptos = Currencies.objects.filter(type='CRYPTO').filter(symbol__ne='USDT')
 
             return parser_all_object(cryptos)
 

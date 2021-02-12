@@ -12,7 +12,9 @@ class WebsocketEmitter():
 
     def __data_callback(self, data):
         try:
-            cryptos = Currencies.objects(pair=data['s'])
+            symbol = data['s']
+            original_symbol = symbol[:len(symbol) - 4]
+            cryptos = Currencies.objects(symbol=original_symbol)
             cryptos.update_one(set__price=data['c'])
 
             return parser_all_object(cryptos)
